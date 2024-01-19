@@ -1,0 +1,71 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.22;
+
+contract PersonalInfo {
+    enum Month {Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec}
+
+    struct Date {
+        Month month;
+        uint8 day;
+        uint16 year;
+    }
+
+    string private name;
+    uint48 private cnic;
+    string private passportNum;
+    Date private dateOfBirth;
+
+    address private owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Not the owner");
+        _;
+    }
+
+    function transferOwnership(address newOwner) public onlyOwner {
+        owner = newOwner;
+    }
+
+    // Setters
+    function setName(string memory _name) public onlyOwner {
+        name = _name;
+    }
+
+    function setCNIC(uint48 _cnic) public onlyOwner {
+        cnic = _cnic;
+    }
+
+    function setPassportNum(string memory _passportNum) public onlyOwner {
+        passportNum = _passportNum;
+    }
+
+    function setDateOfBirth(Month _month, uint8 _day, uint16 _year) public onlyOwner {
+        dateOfBirth = Date(_month, _day, _year);
+    }
+    
+    // Getters
+    function getName() public view returns (string memory) {
+        return name;
+    }
+
+    function getCNIC() public view returns (uint48) {
+        return cnic;
+    }
+
+    function getPassportNum() public view returns (string memory) {
+        return passportNum;
+    }
+
+    function getDateOfBirth() public view returns (Month, uint8, uint16) {
+        return (dateOfBirth.month, dateOfBirth.day, dateOfBirth.year);
+    }
+
+    // Payer
+    function pay(address payable receiver) public payable {
+        receiver.transfer(msg.value);
+    }
+}
