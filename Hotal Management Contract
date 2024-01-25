@@ -1,0 +1,72 @@
+For Homework 
+Make a Smart Contract for hotel management. It should contain all below point. 
+1) Complete Detail of Hotel can be got from a view function (Hotel Name, Hotel Age, Hotel Tel No) 
+2) It should manage Hotel Residents -> from which we can get which user is staying at which room/flat 
+3) Staff Can add new hotel residents (Name, Room/Flat Name, NIC) Each User should be mapped to its unique wallet address (address datatype) 
+4) A Function that return the details of specific user
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract HotelManagement {
+
+    // Struct to store details of a resident
+    struct Resident {
+        string name;
+        string roomName;
+        string cnic;
+        address walletAddress;
+    }
+
+    // Mapping to store residents' details
+    mapping(address => Resident) public residents;
+
+    // Mapping to store the room/flat occupancy status
+    mapping(string => bool) public roomOccupancy;
+
+    // Hotel details
+    string public hotelName;
+    uint public hotelAge;
+    string public hotelTelNo;
+
+    // Modifier to ensure only staff can execute certain functions
+    modifier onlyStaff() {
+        // Implement staff authentication logic here
+        // For simplicity, let's assume only one staff account for now
+        require(msg.sender == 0xStaffAddress, "Only staff can call this function");
+        _;
+    }
+
+    // Constructor to set initial hotel details
+    constructor(string memory _hotelName, uint _hotelAge, string memory _hotelTelNo) {
+        hotelName = _hotelName;
+        hotelAge = _hotelAge;
+        hotelTelNo = _hotelTelNo;
+    }
+
+    // Function to get hotel details
+    function getHotelDetails() public view returns (string memory, uint, string memory) {
+        return (hotelName, hotelAge, hotelTelNo);
+    }
+
+    // Function for staff to add new residents
+    function addResident(string memory _name, string memory _roomName, string memory _cnic, address _walletAddress) public onlyStaff {
+        require(residents[_walletAddress].walletAddress == address(0), "User already exists");
+        require(!roomOccupancy[_roomName], "Room/Flat is already occupied");
+
+        // Add resident
+        residents[_walletAddress] = Resident(_name, _roomName, _cnic, _walletAddress);
+        roomOccupancy[_roomName] = true;
+    }
+
+    // Function to get details of a specific resident
+    function getResidentDetails(address _walletAddress) public view returns (string memory, string memory, string memory, address) {
+        require(residents[_walletAddress].walletAddress != address(0), "User not found");
+        return (
+            residents[_walletAddress].name,
+            residents[_walletAddress].roomName,
+            residents[_walletAddress].cnic,
+            residents[_walletAddress].walletAddress
+        );
+    }
+}
