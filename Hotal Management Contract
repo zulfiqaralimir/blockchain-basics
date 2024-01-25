@@ -5,6 +5,13 @@ Make a Smart Contract for hotel management. It should contain all below point.
 3) Staff Can add new hotel residents (Name, Room/Flat Name, NIC) Each User should be mapped to its unique wallet address (address datatype) 
 4) A Function that return the details of specific user
 
+You need to deploy this contract on an Ethereum blockchain.
+This example assumes a simple staff authentication mechanism (onlyStaff modifier) and a single staff account.
+Adjust the access control and authentication mechanisms based on your requirements.
+Ensure proper testing before deploying to a live network.
+This is a basic example, and in a real-world scenario, you might need additional features and security measures.
+
+CODE
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
