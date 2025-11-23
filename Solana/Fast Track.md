@@ -157,3 +157,6 @@ If you want, I can generate:
 - A **starter Anchor project**
 - A **Python AI agent template**
 - A **15-day compressed learning plan**
+
+https://chatgpt.com/c/691c0c01-815c-832f-b840-3641619b29bd
+
