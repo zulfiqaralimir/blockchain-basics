@@ -74,6 +74,10 @@
 - Transaction: A group of commands executed together
 
 
+
+
+
+
 ## 🧾 What is an Account?
 On Solana, **everything is an account**.  
 An account is a **data container** on the blockchain. It stores:
