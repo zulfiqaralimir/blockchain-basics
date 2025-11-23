@@ -1,5 +1,79 @@
 # 🌐 Solana Fundamentals
 
+An Account is like a box that stores data on the Solana blockchain.
+Account = storage place.
+A Program is a smart contract on Solana.
+
+Program = rules.
+Account = storage.
+
+A Signer is someone/something that gives permission for a transaction.
+A signer must use a private key to approve an action.
+
+Without a signer → the blockchain will not accept the transaction.
+Signer = authorization.
+
+Solana requires rent (lamports) to store data in accounts.
+Rent = fee for storing data.
+
+A Cluster is a different Solana environment.
+Cluster = different versions of the Solana network.
+
+A Keypair is a combination of:
+Public key → your address
+Private key → your password/signing key
+
+Public key = bank account number
+Private key = ATM PIN
+
+An RPC Node is a gateway that lets your program talk to the Solana blockchain.
+RPC = the bridge between your code and the blockchain.
+
+PDAs (Program Derived Addresses)
+A PDA is a special address that belongs to a program, not a human.
+A locker that only the program can open.
+
+Seeds are the small pieces of data used to create a PDA.
+Think of seeds as ingredients used to calculate a unique address.
+
+A bump is a small number (0–255) used to make a PDA valid.
+Think of bump as a “fixing number” to make the PDA safe.
+
+CPIs (Cross-Program Invocations)
+A CPI is when one Solana program calls another program.
+One app calling another app’s function.
+
+A lamport is the smallest unit of SOL.
+1 SOL = 1,000,000,000 lamports
+Lamports = tiny pieces of SOL.
+
+A Program ID is the public key of a Solana program.
+A program’s permanent address on the blockchain.
+
+An instruction is one command you tell the blockchain.
+Instruction = one action.
+A transaction is a bundle of instructions sent together.
+Think of a transaction as a package containing multiple commands.
+
+✅ Summary in One Line Each
+
+PDA: Program-owned address with no private key
+
+Seeds: Data used to generate a PDA
+
+Bump: Extra number used to make a PDA valid
+
+CPI: One program calling another program
+
+Lamports: Smallest unit of SOL
+
+Program ID: Address of a smart contract
+
+Instruction: One command
+
+Transaction: A group of commands executed together
+
+
 ## 🧾 What is an Account?
 On Solana, **everything is an account**.  
 An account is a **data container** on the blockchain. It stores:
